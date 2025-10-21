@@ -1,0 +1,199 @@
+# Канонические теги и их шаблоны (RU/EN синонимы, аббревиатуры)
+modalities:
+  - label: CT
+    patterns:
+      - "\\bct\\b"
+      - "computed tomography"
+      - "компьютерн"
+      - "к[ -]?т\\b"
+      - "томограф"
+  - label: MRI
+    patterns:
+      - "\\bmri\\b"
+      - "magnetic resonance"
+      - "магнитн"
+      - "резонанс"
+      - "м[ -]?р[ -]?т\\b"
+      - "flair"
+      - "\\bt1\\b"
+      - "\\bt2\\b"
+  - label: CXR
+    patterns:
+      - "\\bcxr\\b"
+      - "chest x[- ]?ray"
+      - "xray"
+      - "рентген"
+      - "рентгенография"
+      - "грудной клетки"
+  - label: US
+    patterns:
+      - "\\bultrasound\\b"
+      - "\\bus\\b"
+      - "узи"
+      - "сонограф"
+      - "эхограф"
+  - label: ECG
+    patterns:
+      - "\\becg\\b"
+      - "э[ -]?к[ -]?г\\b"
+      - "электрокардиограм"
+  - label: EEG
+    patterns:
+      - "\\beeg\\b"
+      - "э[ -]?э[ -]?г\\b"
+      - "электроэнцефалограм"
+  - label: OCT
+    patterns:
+      - "\\boct\\b"
+      - "optical coherence tomography"
+      - "оптическая когерентная томограф"
+      - "о[ -]?к[ -]?т\\b"
+  - label: Fundus
+    patterns:
+      - "\\bfundus\\b"
+      - "ретинальн"
+      - "сетчатк"
+      - "глазн(ое|ого) дно"
+      - "фундус"
+  - label: Histopathology
+    patterns:
+      - "\\bhisto(pathology)?\\b"
+      - "wsi"
+      - "whole ?slide"
+      - "гисто"
+      - "дерматопатолог"
+      - "микропрепарат"
+      - "срез"
+  - label: Text
+    patterns:
+      - "\\bnotes?\\b"
+      - "clinical text"
+      - "клиническ(ие|их) заметк"
+      - "истории болезн"
+      - "эпикриз"
+      - "текст"
+
+tasks:
+  - label: segmentation
+    patterns: ["\\bseg(mentation)?\\b", "сегментац"]
+  - label: classification
+    patterns: ["\\bclassification|classify|classifier\\b", "классификац", "классифиц"]
+  - label: detection
+    patterns: ["\\bdetection|detect\\b", "детекц", "обнаружен"]
+  - label: registration
+    patterns: ["\\bregistration\\b", "регистрац"]
+  - label: ner
+    patterns: ["\\bner\\b", "entity recognition", "именованных сущностей", "распознавани[ея] сущностей", "де[- ]?идентифик"]
+  - label: regression
+    patterns: ["\\bregression\\b", "регресси"]
+
+organs:
+  - label: lung
+    patterns: ["\\blung(s)?\\b", "chest", "легк", "грудн(ая|ой) клетк"]
+  - label: brain
+    patterns: ["\\bbrain\\b", "cerebral", "мозг", "головн(ой|ого) мозг"]
+  - label: liver
+    patterns: ["\\bliver\\b", "hepatic", "печен"]
+  - label: retina
+    patterns: ["\\bretina\\b", "\\beye\\b", "fundus", "сетчатк", "глаз"]
+  - label: skin
+    patterns: ["\\bskin\\b", "derm", "кож(а|и)", "дерм"]
+  - label: fetus
+    patterns: ["\\bfetus\\b", "fetal", "obstetric", "плод", "акушерск"]
+  - label: heart
+    patterns: ["\\bheart\\b", "cardiac", "сердц", "кардиа"]
+  - label: abdomen
+    patterns: ["\\babdomen\\b", "abdominal", "брюшн(ая|ой)", "живот"]
+
+diseases:
+  - label: pneumonia
+    patterns: ["\\bpneumonia\\b", "пневмони"]
+  - label: covid-19
+    patterns: ["\\bcovid[- ]?19\\b", "коронавир", "ковид"]
+  - label: melanoma
+    patterns: ["\\bmelanoma\\b", "меланом"]
+  - label: tumor
+    patterns: ["\\bglioma\\b", "tumou?r", "tumor", "глиом", "опухол", "новообраз"]
+  - label: arrhythmia
+    patterns: ["\\barrhythmia\\b", "аритм"]
+  - label: diabetic retinopathy
+    patterns:
+      - "диабетическ\\w* ретинопат\\w*"
+      - "\\bdiabetic retinopathy\\b"
+      - "\\bdr\\b"
+  - label: lung cancer
+    patterns: ["\\blung cancer\\b", "рак легк"]
+  - label: epilepsy
+    patterns: ["\\bepilepsy\\b", "seizure", "эпилепси", "припад"]
+  - label: amd
+    patterns: ["\\bamd\\b", "macular edema", "возрастн[аяойие] макулярн[аяойие] дегенерац", "макулярн[ыйое] отек", "вмд"]
+  - label: pregnancy
+    patterns: ["\\bpregnancy\\b", "беременност"]
+  - label: diabetes
+    patterns: ["\\bdiabetes\\b", "сахарн[ыйое] диабет", "\\bдиабет\\b"]
+
+population:
+  - label: pediatric
+    patterns: ["\\bpediatric\\b", "adolescent", "children", "child", "неонат", "infant", "педиатр", "дет(и|ск)", "подрост"]
+  - label: adult
+    patterns: ["\\badult\\b", "взросл(ые|ая|ой)"]
+
+stopwords:
+  - for
+  - with
+  - and
+  - or
+  - the
+  - a
+  - an
+  - of
+  - to
+  - in
+  - on
+  - non
+  - contrast
+  - without
+  - no
+  - dataset
+  - data
+  - images
+  - image
+  - для
+  - с
+  - и
+  - или
+  - но
+  - это
+  - этот
+  - эта
+  - тот
+  - та
+  - те
+  - что
+  - как
+  - где
+  - когда
+  - а
+  - также
+  - либо
+  - же
+  - про
+  - на
+  - по
+  - во
+  - из
+  - от
+  - при
+  - к
+  - у
+  - о
+  - обо
+  - со
+  - ко
+  - ни
+  - без
+  - кроме
+  - всего
+  - лишь
+  - только
+  - просто
