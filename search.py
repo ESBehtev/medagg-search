@@ -1,7 +1,20 @@
-import argparse, json
+import argparse
+import json
+
 from .data import synthetic_datasets
-from .scoring import HybridSearcher
 from .parsing import to_tag_query
+from .scoring import HybridSearcher
+
+
+def search(query, k):
+    """Search function that can be called from other Python code"""
+    datasets = synthetic_datasets()
+    searcher = HybridSearcher(datasets)
+
+    result = searcher.search(query, k)
+    result["api_tags"] = to_tag_query(result["slots"])
+
+    return result
 
 def main():
     parser = argparse.ArgumentParser(description="Medical dataset search (synthetic demo)")
@@ -10,10 +23,7 @@ def main():
     parser.add_argument("--json", action="store_true", help="Output JSON")
     args = parser.parse_args()
 
-    datasets = synthetic_datasets()
-    searcher = HybridSearcher(datasets)
-    out = searcher.search(args.query, k=args.k)
-    out["api_tags"] = to_tag_query(out["slots"])
+    out = search(args.query, k=args.k)
 
     if args.json:
         print(json.dumps(out, ensure_ascii=False, indent=2))
