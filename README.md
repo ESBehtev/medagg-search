@@ -1,22 +1,16 @@
 # 🩺 medagg-search
 
-Мини-проект: поиск по медицинским датасетам (русские и английские запросы).  
-На вход — строка запроса, на выход — топ-K датасетов и JSON-теги для внешнего API (например, Kaggle).
+Мини-проект: поиск по медицинским датасетам (русские и английские запросы).
+
+Ветка для работы с модулями git.
 
 ---
 
-## 🚀 Запуск
+## Создание модуля
 
 ```bash
-# установка окружения
-python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-
-# пример поиска
-python -m medsearch.search "КТ легких пневмония классификация" --k 3
-python -m medsearch.search "МРТ мозга глиома сегментация" --k 3
-python -m medsearch.search "глазное дно диабетическая ретинопатия классификация" --k 3
+# добавление модуля в директорию с названием medsearch
+git submodule add -b submodule -- https://github.com/ESBehtev/medagg-search.git ./medsearch
 ```
 
 ---
@@ -24,15 +18,13 @@ python -m medsearch.search "глазное дно диабетическая р�
 ## ⚙️ Что внутри
 
 ```
-medagg-search/
-├─ medsearch/
-│  ├─ data.py              # синтетические карточки датасетов
-│  ├─ scoring.py           # TF-IDF + бонусы за совпадение тегов
-│  ├─ parsing.py           # парсинг запроса (через YAML-таксономию)
-│  ├─ config_loader.py     # загрузка и компиляция YAML
-│  └─ config/
-│     └─ taxonomy.yaml     # редактируемые паттерны и стоп-слова (RU/EN)
-├─ main.py                 # точка входа (CLI)
+medsearch/
+├─ data.py              # синтетические карточки датасетов
+├─ scoring.py           # TF-IDF + бонусы за совпадение тегов
+├─ parsing.py           # парсинг запроса (через YAML-таксономию)
+├─ config_loader.py     # загрузка и компиляция YAML
+├─ config_loader/
+│  └─ taxonomy.yaml     # редактируемые паттерны и стоп-слова (RU/EN)
 ├─ requirements.txt
 └─ README.md
 ```
@@ -55,7 +47,7 @@ Top-3 results:
 
 ## 🛠 Как редактировать теги
 
-Файл: `medsearch/config/taxonomy.yaml`
+Файл: `config/taxonomy.yaml`
 
 Пример добавления болезни:
 ```yaml
@@ -65,8 +57,6 @@ diseases:
       - "\\bhepatitis\\b"
       - "гепатит"
 ```
-
-После правки просто перезапусти скрипт.
 
 ---
 
