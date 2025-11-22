@@ -88,56 +88,664 @@ tasks:
     patterns: ["\\bregression\\b", "регресси"]
 
 organs:
+  - label: chest
+    patterns:
+    - "грудн(ая|ой) клетк"
+    - "thorax"
+    - "chest"
+
   - label: lung
-    patterns: ["\\blung(s)?\\b", "chest", "легк", "грудн(ая|ой) клетк"]
+    patterns: ["\\blung(s)?\\b", "chest", "thorax", "легк", "грудн(ая|ой) клетк"]
+
+  - label: pleura
+    patterns: ["pleura", "плевр"]
+
+  - label: mediastinum
+    patterns: ["mediastinum", "медиастин", "средостени"]
+
+  - label: trachea
+    patterns: ["trachea", "трахе"]
+
+  - label: bronchi
+    patterns: ["bronch(i|o)", "бронх"]
+
+  - label: larynx
+    patterns: ["larynx", "ларин(г|кс)", "гортан"]
+
+  - label: pharynx
+    patterns: ["pharynx", "фарин", "глотк"]
+
+  - label: sinus
+    patterns: ["sinus", "гаймор", "пазух"]
+
   - label: brain
     patterns: ["\\bbrain\\b", "cerebral", "мозг", "головн(ой|ого) мозг"]
+
+  - label: cerebellum
+    patterns: ["cerebell", "мозжеч"]
+
+  - label: pituitary
+    patterns: ["pituitar", "гипофиз"]
+
+  - label: orbit
+    patterns: ["orbit", "орбит", "глазниц"]
+
+  - label: eye
+    patterns: ["eye", "глаз", "офтальм", "окул"]
+
+  - label: retina
+    patterns: ["ретин", "\\bretina\\b", "fundus", "сетчатк"]
+
+  - label: optic nerve
+    patterns: ["optic nerve", "зрительн(ый|ого) нерв"]
+
+  - label: ear
+    patterns: ["ear", "ухо", "отит", "височн(ая|ой) кость"]
+
+  - label: spine
+    patterns: ["spine", "vertebra", "позвоноч", "позвонок"]
+
+  - label: cervical spine
+    patterns: ["cervical spine", "шейн(ый|ого) отдел", "c-spine"]
+
+  - label: thoracic spine
+    patterns: ["thoracic spine", "грудн(ой|ого) отдел позвоноч"]
+
+  - label: lumbar spine
+    patterns: ["lumbar spine", "поясничн(ый|ого) отдел", "l-spine"]
+
+  - label: sacrum
+    patterns: ["sacrum", "крестец"]
+
   - label: liver
     patterns: ["\\bliver\\b", "hepatic", "печен"]
-  - label: retina
-    patterns: ["\\bretina\\b", "\\beye\\b", "fundus", "сетчатк", "глаз"]
-  - label: skin
-    patterns: ["\\bskin\\b", "derm", "кож(а|и)", "дерм"]
+
+  - label: gallbladder
+    patterns: ["gallbladder", "желчн(ый|ого) пузыр"]
+
+  - label: bile ducts
+    patterns: ["bile duct", "желчн(ые|ого) проток"]
+
+  - label: pancreas
+    patterns: ["pancreas", "поджелудочн"]
+
+  - label: spleen
+    patterns: ["spleen", "селезен"]
+
+  - label: kidney
+    patterns: ["kidney", "renal", "почек", "нефр"]
+
+  - label: adrenal gland
+    patterns: ["adrenal", "надпочечн"]
+
+  - label: bladder
+    patterns: ["bladder", "мочев(ой|ый) пузыр"]
+
+  - label: prostate
+    patterns: ["prostate", "простата", "предстательн(ая|ой) желез"]
+
+  - label: uterus
+    patterns: ["uterus", "матк", "эндометр"]
+
+  - label: cervix
+    patterns: ["cervix", "шейк(а|и) матк"]
+
+  - label: ovary
+    patterns: ["ovary", "яични"]
+
   - label: fetus
-    patterns: ["\\bfetus\\b", "fetal", "obstetric", "плод", "акушерск"]
+    patterns: ["fetus", "fetal", "плод"]
+
+  - label: placenta
+    patterns: ["placenta", "плацент"]
+
+  - label: breast
+    patterns: ["breast", "молочн(ая|ой) желез"]
+
+  - label: lymph nodes
+    patterns: ["lymph node", "lymphaden", "лимфоузл", "лимфаден"]
+
+  - label: soft tissue
+    patterns: ["soft tissue", "мягк(ие|их) ткан"]
+
+  - label: vessels
+    patterns: ["vessel", "artery", "vein", "arterial", "вен(ы|а)", "артери"]
+
+  - label: aorta
+    patterns: ["aorta", "аорт"]
+
   - label: heart
-    patterns: ["\\bheart\\b", "cardiac", "сердц", "кардиа"]
+    patterns: ["heart", "cardiac", "сердц", "кардиа"]
+
   - label: abdomen
-    patterns: ["\\babdomen\\b", "abdominal", "брюшн(ая|ой)", "живот"]
+    patterns: ["abdomen", "abdominal", "брюшн", "живот"]
+
+  - label: pelvis
+    patterns: ["pelvis", "таз(а|овый)"]
+
+  - label: colon
+    patterns: ["colon", "кишк(а|и)", "ободочн"]
+
+  - label: small bowel
+    patterns: ["small bowel", "тонк(ая|ой) кишк"]
+
+  - label: stomach
+    patterns: ["stomach", "желудок"]
+
+  - label: esophagus
+    patterns: ["esophag", "пищевод"]
+
+  - label: thyroid
+    patterns: ["thyroid", "щитовидн"]
+
+  - label: neck
+    patterns: ["neck", "шея"]
+
+  - label: extremities
+    patterns: ["extremit", "конечност", "рук", "ног"]
+
+  - label: bone
+    patterns: ["bone", "кост", "скелет"]
+
+  - label: joints
+    patterns: ["joint", "сустав"]
 
 diseases:
+  # --- Lung / Chest ---
   - label: pneumonia
-    patterns: ["\\bpneumonia\\b", "пневмони"]
+    patterns:
+      - "\\bpneumonia\\b"
+      - "пневмони"
+      - "пнеумони"        
   - label: covid-19
-    patterns: ["\\bcovid[- ]?19\\b", "коронавир", "ковид"]
-  - label: melanoma
-    patterns: ["\\bmelanoma\\b", "меланом"]
-  - label: tumor
-    patterns: ["\\bglioma\\b", "tumou?r", "tumor", "глиом", "опухол", "новообраз"]
+    patterns:
+      - "\\bcovid[- ]?19\\b"
+      - "sars[- ]?cov[- ]?2"
+      - "коронавир"
+      - "ковид"
+  - label: lung cancer
+    patterns:
+      - "\\blung cancer\\b"
+      - "bronchogenic carcinoma"
+      - "рак легк"
+      - "опухол[ьи] легк"
+  - label: pulmonary embolism
+    patterns:
+      - "pulmonary embol"
+      - "\\bpe\\b"
+      - "тромбоэмбол[иия] легочн[ойого] артер"
+  - label: copd
+    patterns:
+      - "\\bcopd\\b"
+      - "chronic obstructive pulmonary"
+      - "хронич[ескоаяие]* обструктивн[аяое] болезн[ььи] легк"
+      - "хобл"
+  - label: pulmonary fibrosis
+    patterns:
+      - "pulmonary fibrosis"
+      - "интерстициал(ьн|ьной|ьные) заболеван[ияие] легк"
+      - "фиброз легк"
+  - label: pneumothorax
+    patterns:
+      - "pneumothorax"
+      - "пневмоторакс"
+  - label: pleural effusion
+    patterns:
+      - "pleural effusion"
+      - "выпот в плевральн"
+      - "плевральн(ый|ые) выпот"
+  - label: ascites
+    patterns:
+      - "асцит"
+      - "ascites"
+      - "fluid accumulation"
+      - "free fluid"
+      - "abdominal fluid"
+
+  # --- Neuro / Brain ---
+  - label: stroke
+    patterns:
+      - "ischemic stroke"
+      - "hemorrhagic stroke"
+      - "cva"
+      - "инсульт"
+      - "острое нарушен[иеия] мозгового кровообращен"
+  - label: hemorrhage
+    patterns:
+      - "intracranial hemorrhage"
+      - "intracerebral hemorrhage"
+      - "subarachnoid hemorrhage"
+      - "кровоизлияни[ея] в мозг"
+      - "внутричерепн[оеые] кровоизлиян"
+      - "субарахноидальн[оеые] кровоизлиян"
+      - "гематом[аы]"
+  - label: multiple sclerosis
+    patterns:
+      - "multiple sclerosis"
+      - "\\bms\\b"
+      - "рассеянн[ыйоеая] склероз"
+  - label: alzheimer disease
+    patterns:
+      - "alzheimer"
+      - "болезн[ььи] альцгейм"
+  - label: epilepsy
+    patterns:
+      - "\\bepilepsy\\b"
+      - "seizure"
+      - "эпилепси"
+      - "припад"
+  - label: brain tumor
+    patterns:
+      - "brain tumor"
+      - "intracranial tumor"
+      - "опухол[ьи] мозга"
+      - "новообразован[ияие] мозга"
+  - label: glioma
+    patterns:
+      - "\\bglioma\\b"
+      - "глиом"
+  - label: meningioma
+    patterns:
+      - "meningioma"
+      - "менингиом"
+  - label: metastasis
+    patterns:
+      - "metastasis"
+      - "metastases"
+      - "метастаз"
+  - label: pituitary adenoma
+    patterns:
+      - "pituitary adenoma"
+      - "аденом[аы] гипофиз"
+
+  # --- Cardiac / Vessels ---
+  - label: myocardial infarction
+    patterns:
+      - "myocardial infarction"
+      - "mi\\b"
+      - "инфаркт миокард"
+  - label: coronary artery disease
+    patterns:
+      - "coronary artery disease"
+      - "\\bcad\\b"
+      - "ишемическ[аяоеие] болезн[ььи] сердц"
+      - "ибс"
+  - label: heart failure
+    patterns:
+      - "heart failure"
+      - "сердечн[аяое] недостаточн"
+  - label: cardiomyopathy
+    patterns:
+      - "cardiomyopathy"
+      - "кардиомиопат"
   - label: arrhythmia
-    patterns: ["\\barrhythmia\\b", "аритм"]
+    patterns:
+      - "\\barrhythmia\\b"
+      - "аритм"
+  - label: hypertension
+    patterns:
+      - "hypertension"
+      - "high blood pressure"
+      - "артериальн[аяое] гипертенз"
+      - "гипертони[яи]"
+
+  # --- Abdomen / GI / Liver / Pancreas ---
+  - label: fatty liver
+    patterns:
+      - "fatty liver"
+      - "steatosis"
+      - "стеатоз печен"
+      - "жиров[ойаяые] гепатоз"
+  - label: cirrhosis
+    patterns:
+      - "cirrhosis"
+      - "цирроз печен"
+  - label: hcc
+    patterns:
+      - "hepatocellular carcinoma"
+      - "\\bhcc\\b"
+      - "гепатоцеллюлярн[аяое] карцином"
+  - label: cholelithiasis
+    patterns:
+      - "cholelithiasis"
+      - "gallstones"
+      - "камн[иь] в желчн(ом|ом пузыр)"
+      - "желчнокаменн[аяое] болезн"
+  - label: cholecystitis
+    patterns:
+      - "cholecystitis"
+      - "воспалени[ея] желчн(ого|ого пузыр)"
+      - "холецистит"
+  - label: pancreatitis
+    patterns:
+      - "pancreatitis"
+      - "панкреатит"
+  - label: pancreatic cancer
+    patterns:
+      - "pancreatic cancer"
+      - "рак поджелудочн(ой|ой желез)"
+  - label: appendicitis
+    patterns:
+      - "appendicitis"
+      - "аппендицит"
+  - label: diverticulitis
+    patterns:
+      - "diverticulitis"
+      - "дивертикулит"
+  - label: inflammatory bowel disease
+    patterns:
+      - "inflammatory bowel disease"
+      - "\\bibd\\b"
+      - "ulcerative colitis"
+      - "crohn"
+      - "неспецифическ[ийиеая] язвенн[ыйаяое] колит"
+      - "болезн[ььи] крона"
+  - label: bowel obstruction
+    patterns:
+      - "bowel obstruction"
+      - "intestinal obstruction"
+      - "кишечн[аяоеие] непроходимост"
+
+  # --- Kidney / Urinary ---
+  - label: urolithiasis
+    patterns:
+      - "urolithiasis"
+      - "kidney stone"
+      - "renal stone"
+      - "nephrolithiasis"
+      - "камн[иь] в почк"
+      - "мочекаменн[аяое] болезн"
+  - label: hydronephrosis
+    patterns:
+      - "hydronephrosis"
+      - "гидронефроз"
+  - label: renal failure
+    patterns:
+      - "renal failure"
+      - "kidney failure"
+      - "почечн[аяое] недостаточн"
+
+  # --- Reproductive / Gyne / Obstetrics ---
+  - label: ovarian cyst
+    patterns:
+      - "ovarian cyst"
+      - "кист[аы] яичник"
+  - label: ovarian cancer
+    patterns:
+      - "ovarian cancer"
+      - "рак яичник"
+  - label: uterine fibroid
+    patterns:
+      - "uterine fibroid"
+      - "leiomyoma"
+      - "миом[аы] матк"
+      - "лейомиом[аы] матк"
+  - label: ectopic pregnancy
+    patterns:
+      - "ectopic pregnancy"
+      - "внематочн[аяое] беременност"
+  - label: miscarriage
+    patterns:
+      - "miscarriage"
+      - "выкидыш"
+      - "самопроизвольн[ыйоеая] аборт"
+  - label: preeclampsia
+    patterns:
+      - "preeclampsia"
+      - "преэклампси"
+  - label: endometriosis
+    patterns:
+      - "endometriosis"
+      - "эндометриоз"
+
+  # --- Breast ---
+  - label: breast cancer
+    patterns:
+      - "breast cancer"
+      - "рак молочн(ой|ой желез)"
+  - label: mastitis
+    patterns:
+      - "mastitis"
+      - "мастит"
+
+  # --- Skin / Soft tissue ---
+  - label: melanoma
+    patterns:
+      - "\\bmelanoma\\b"
+      - "меланом"
+  - label: basal cell carcinoma
+    patterns:
+      - "basal cell carcinoma"
+      - "bcc\\b"
+      - "базальноклеточн[аяое] карцином"
+  - label: squamous cell carcinoma
+    patterns:
+      - "squamous cell carcinoma"
+      - "scc\\b"
+      - "плоскоклеточн[аяое] карцином"
+  - label: psoriasis
+    patterns:
+      - "psoriasis"
+      - "псориаз"
+  - label: eczema
+    patterns:
+      - "eczema"
+      - "dermatitis"
+      - "экзем"
+      - "дерматит"
+
+  # --- Eye / Retina ---
   - label: diabetic retinopathy
     patterns:
       - "диабетическ\\w* ретинопат\\w*"
       - "\\bdiabetic retinopathy\\b"
       - "\\bdr\\b"
-  - label: lung cancer
-    patterns: ["\\blung cancer\\b", "рак легк"]
-  - label: epilepsy
-    patterns: ["\\bepilepsy\\b", "seizure", "эпилепси", "припад"]
   - label: amd
-    patterns: ["\\bamd\\b", "macular edema", "возрастн[аяойие] макулярн[аяойие] дегенерац", "макулярн[ыйое] отек", "вмд"]
-  - label: pregnancy
-    patterns: ["\\bpregnancy\\b", "беременност"]
+    patterns:
+      - "\\bamd\\b"
+      - "age[- ]related macular degeneration"
+      - "возрастн[аяойие] макулярн[аяойие] дегенерац"
+      - "вмд"
+  - label: glaucoma
+    patterns:
+      - "glaucoma"
+      - "глауком"
+
+  # --- Musculoskeletal / Trauma ---
+  - label: fracture
+    patterns:
+      - "fracture"
+      - "перелом"
+  - label: osteoarthritis
+    patterns:
+      - "osteoarthritis"
+      - "degenerative joint disease"
+      - "остеоартроз"
+      - "деформирующ[ийиеая] артроз"
+  - label: osteoporosis
+    patterns:
+      - "osteoporosis"
+      - "остеопороз"
+  - label: osteomyelitis
+    patterns:
+      - "osteomyelitis"
+      - "остеомиелит"
+  - label: meniscus tear
+    patterns:
+      - "meniscus tear"
+      - "разрыв мениск"
+  - label: ligament injury
+    patterns:
+      - "acl tear"
+      - "pcl tear"
+      - "ligament injury"
+      - "разрыв связок"
+      - "поврежден[иеия] связок"
+
+  # --- General / Metabolic / Systemic ---
+  - label: obesity
+    patterns:
+      - "obesity"
+      - "ожирен"
   - label: diabetes
-    patterns: ["\\bdiabetes\\b", "сахарн[ыйое] диабет", "\\bдиабет\\b"]
+    patterns:
+      - "\\bdiabetes\\b"
+      - "сахарн[ыйое] диабет"
+      - "\\bдиабет\\b"
+  - label: anemia
+    patterns:
+      - "anemia"
+      - "анеми"
+  - label: sepsis
+    patterns:
+      - "sepsis"
+      - "сепсис"
+  - label: trauma
+    patterns:
+      - "trauma"
+      - "injury"
+      - "травм"
+  - label: infection
+    patterns:
+      - "infection"
+      - "инфекц"
+  - label: inflammation
+    patterns:
+      - "inflammation"
+      - "воспалени"
 
 population:
   - label: pediatric
-    patterns: ["\\bpediatric\\b", "adolescent", "children", "child", "неонат", "infant", "педиатр", "дет(и|ск)", "подрост"]
-  - label: adult
-    patterns: ["\\badult\\b", "взросл(ые|ая|ой)"]
+    patterns:
+      - "\\bpediatric\\b"
+      - "pediatr"
+      - "children"
+      - "\\bchild(ren)?\\b"
+      - "kids"
+      - "неонат"
+      - "infant"
+      - "педиатр"
+      - "дет(и|ск)"
+      - "подрост"
+      - "ребен"
+      - "ребён"
+      - "ребенок"
+      - "младен"
+      - "дошкол"
+      - "школьник"
 
+  - label: neonate
+    patterns:
+      - "\\bneonate\\b"
+      - "neonatal"
+      - "новорожденн"
+      - "новорождённ"
+      - "неонатал"
+
+  - label: infant
+    patterns:
+      - "\\binfant\\b"
+      - "младенц"
+      - "груднич"
+
+  - label: adolescent
+    patterns:
+      - "\\badolescent\\b"
+      - "teen"
+      - "teenager"
+      - "подрост"
+
+  - label: adult
+    patterns:
+      - "\\badult\\b"
+      - "adult patient"
+      - "взросл(ые|ая|ой)"
+
+  - label: geriatric
+    patterns:
+      - "geriatric"
+      - "elderly"
+      - "aged"
+      - "старческ"
+      - "пожил(ой|ая|ые)"
+      - "старше 65"
+
+  - label: pregnant
+    patterns:
+      - "\\bpregnant\\b"
+      - "\\bpregnancy\\b"
+      - "беременност"
+      - "беременна"
+
+  - label: postpartum
+    patterns:
+      - "postpartum"
+      - "послеродов"
+      - "после родов"
+
+  - label: male
+    patterns:
+      - "\\bmale\\b"
+      - "\\bman\\b"
+      - "men"
+      - "мужчин"
+      - "мужск(ой|ого) пола"
+      - "мужской пол"
+
+  - label: female
+    patterns:
+      - "\\bfemale\\b"
+      - "\\bwoman\\b"
+      - "women"
+      - "женщин"
+      - "женск(ий|ого) пола"
+      - "женский пол"
+
+  - label: inpatient
+    patterns:
+      - "inpatient"
+      - "стационарн(ые|ый|ое)"
+      - "стационар"
+
+  - label: outpatient
+    patterns:
+      - "outpatient"
+      - "ambulatory"
+      - "амбулаторн(ый|ое|ые)"
+      - "поликлиник"
+
+  - label: icu
+    patterns:
+      - "\\bicu\\b"
+      - "intensive care"
+      - "critical care"
+      - "реанимац"
+      - "интенсивн(ой|ой терапии)"
+      - "отделен[иеия] реанимац"
+
+  - label: emergency
+    patterns:
+      - "emergency department"
+      - "er visit"
+      - "ed visit"
+      - "неотложк"
+      - "приёмн(ое|ое отделен)"
+      - "приемн(ое|ое отделен)"
+      - "скорая помощь"
+
+  - label: oncology
+    patterns:
+      - "oncology"
+      - "cancer patient"
+      - "онкологическ(ий|ая|ие)"
+      - "онкопациент"
+
+  - label: high risk
+    patterns:
+      - "high-risk"
+      - "высок[ийоеая] риск"
+      - "групп[аы] риска"
+      
 stopwords:
   - for
   - with
