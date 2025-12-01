@@ -3,54 +3,54 @@ from __future__ import annotations
 
 from typing import Dict, List, Tuple
 
-from .parsing import extract_slots, to_tag_query
+# Новый импорт — берём полноценный объект парсинга
+from .parsing import parse_query as parse_query_full, ParsedQuery
 
+
+def parse_to_api(query: str) -> Dict[str, Dict]:
+    """
+    Новый высокоуровневый API:
+    возвращает единый словарь:
+    {
+        "raw_query": "...",
+        "slots": {...},
+        "api_tags": {...}
+    }
+    Это основной интерфейс, который должен дергать бэкенд.
+    """
+    query = (query or "").strip()
+    if not query:
+        return {"raw_query": "", "slots": {}, "api_tags": {}}
+
+    pq: ParsedQuery = parse_query_full(query)
+
+    return {
+        "raw_query": pq.raw_query,
+        "slots": pq.slots,
+        "api_tags": pq.api_tags,
+    }
+
+
+# -----------------------------
+# Старый интерфейс (совместимость)
+# -----------------------------
 
 def parse_query(query: str) -> Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
     """
-    Высокоуровневый API для внешнего кода (Django-бэкенд, CLI и т.п.).
-
-    На вход: строка запроса пользователя.
-    На выход: (slots, tags), где:
-
-      slots:
-        {
-          "modality": [...],
-          "tasks": [...],
-          "organs": [...],
-          "diseases": [...],
-          "population": [...],
-          "keywords": [...]
-        }
-
-      tags:
-        {
-          "modality": [...],
-          "organ": [...],
-          "disease": [...],
-          "task": [...],
-          "population": [...],
-          "keywords": [...]
-        }
-
-    Внутри:
-      - regex-паттерны по таксономии,
-      - Левенштейн для опечаток,
-      - TF-IDF fallback для organs/diseases (если sklearn установлен).
+    Старый API, который возвращает (slots, tags).
+    Используем для совместимости, но бэкенд должен переходить на parse_to_api.
     """
     query = (query or "").strip()
     if not query:
         return {}, {}
 
-    slots = extract_slots(query)
-    tags = to_tag_query(slots)
-    return slots, tags
+    pq: ParsedQuery = parse_query_full(query)
+    return pq.slots, pq.api_tags
 
 
 def parse_tags(query: str) -> Dict[str, List[str]]:
     """
-    Упрощённый API: сразу вернуть только tags.
-    Удобно для бэкенда, когда слоты "как есть" не нужны.
+    Упрощённый старый API: вернуть только tags.
     """
     _, tags = parse_query(query)
     return tags

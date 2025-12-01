@@ -2,8 +2,15 @@
 from __future__ import annotations
 
 import re
-from typing import Dict, List
+from dataclasses import dataclass
+from typing import Dict, List, Any
 
+@dataclass
+class ParsedQuery:
+    raw_query: str
+    slots: Dict[str, List[str]]
+    api_tags: Dict[str, Any]
+    
 from .config_loader import load_taxonomy
 from .similarity import TaxonomyMatcher
 
@@ -12,7 +19,6 @@ _TAX = load_taxonomy()  # грузится 1 раз при импорте
 # Инициализируем TF-IDF матчеры для soft-fallback
 _DISEASE_MATCHER = TaxonomyMatcher(_TAX.diseases)
 _ORGAN_MATCHER = TaxonomyMatcher(_TAX.organs)
-
 
 
 def _levenshtein(a: str, b: str) -> int:
@@ -155,3 +161,19 @@ def to_tag_query(slots: Dict[str, List[str]]) -> Dict[str, List[str]]:
         "population": slots.get("population", []),
         "keywords": slots.get("keywords", []),
     }
+
+
+def parse_query(raw_query: str) -> ParsedQuery:
+    """
+    Высокоуровневая функция парсинга:
+    - вытаскивает слоты из строки запроса
+    - конвертирует их в API-теги
+    - при этом не теряет исходный текст запроса
+    """
+    slots = extract_slots(raw_query)
+    api_tags = to_tag_query(slots)
+    return ParsedQuery(
+        raw_query=raw_query,
+        slots=slots,
+        api_tags=api_tags,
+    )

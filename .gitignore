@@ -7,6 +7,7 @@ dist/
 .eggs/
 .pytest_cache/
 .ipynb_checkpoints/
+.pyc
 
 # Virtual envs
 .venv/
