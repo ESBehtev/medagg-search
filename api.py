@@ -3,21 +3,14 @@ from __future__ import annotations
 
 from typing import Dict, List, Tuple
 
-# Новый импорт — берём полноценный объект парсинга
-from .parsing import parse_query as parse_query_full, ParsedQuery
+# Универсальный импорт
+try:
+    from .parsing import parse_query as parse_query_full, ParsedQuery
+except ImportError:
+    from parsing import parse_query as parse_query_full, ParsedQuery
 
 
-def parse_to_api(query: str) -> Dict[str, Dict]:
-    """
-    Новый высокоуровневый API:
-    возвращает единый словарь:
-    {
-        "raw_query": "...",
-        "slots": {...},
-        "api_tags": {...}
-    }
-    Это основной интерфейс, который должен дергать бэкенд.
-    """
+def parse_to_api(query: str) -> Dict:
     query = (query or "").strip()
     if not query:
         return {"raw_query": "", "slots": {}, "api_tags": {}}
@@ -31,26 +24,16 @@ def parse_to_api(query: str) -> Dict[str, Dict]:
     }
 
 
-# -----------------------------
-# Старый интерфейс (совместимость)
-# -----------------------------
+# Старые интерфейсы (чтобы ничего не ломать в бэкенде)
 
-def parse_query(query: str) -> Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
-    """
-    Старый API, который возвращает (slots, tags).
-    Используем для совместимости, но бэкенд должен переходить на parse_to_api.
-    """
+def parse_query(query: str):
     query = (query or "").strip()
     if not query:
         return {}, {}
-
     pq: ParsedQuery = parse_query_full(query)
     return pq.slots, pq.api_tags
 
 
-def parse_tags(query: str) -> Dict[str, List[str]]:
-    """
-    Упрощённый старый API: вернуть только tags.
-    """
+def parse_tags(query: str):
     _, tags = parse_query(query)
     return tags
